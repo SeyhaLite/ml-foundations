@@ -36,6 +36,10 @@ def test_conf_py_settings():
     assert not re.search(r'^\s*source_suffix\s*=', conf, re.M), (
         "conf.py must not override source_suffix — myst_nb registers .md/.ipynb itself"
     )
+    # Dark-mode-only UI: RTD theme + override stylesheet loaded after theme CSS
+    assert '"sphinx_rtd_theme"' in conf, "html_theme must be sphinx_rtd_theme"
+    assert "dark-theme.css" in conf, "dark-theme.css override must be listed in html_css_files"
+    assert (DOCS / "_static" / "dark-theme.css").is_file(), "docs/_static/dark-theme.css missing"
 
 
 def test_chapter_files_present():

@@ -123,6 +123,7 @@ tokenizer.padding_side = "left"
 ## វិធីសាស្ត្រ debug ជាប្រព័ន្ធ
 
 1. **បង្រួមបញ្ហា** — dataset តូច (៥ ឧទាហរណ៍), ម៉ូដែលតូច, ១០ steps
+   (ចុច {kbd}`Ctrl+C` ដើម្បីបញ្ឈប់ការហ្វឹកដែលកំពុងរត់)
 2. **ផ្ទៀងផ្ទាត់ដំណាក់កាលនីមួយៗ** — `qwen-ft validate` → `qwen-ft env` →
    smoke test (`pytest -m heavy`) → ហ្វឹកពិត
 3. **អាន error ពីក្រោមឡើងលើ** — traceback ជួរចុងក្រោយប្រាប់ចំណុចខូច

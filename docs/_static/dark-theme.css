@@ -1,0 +1,647 @@
+/* ==========================================================================
+   dark-theme.css — dark-mode-only palette override for sphinx_rtd_theme.
+   Loaded AFTER the theme CSS (html_css_files) and after style.css (fonts).
+
+   Palette (from the UI brief):
+     page bg        #14161a     sidebar        #1f2328
+     cards/rows     #1c2027     alt rows       #171a1e
+     table header   #232830     borders        #343b45
+     body text      #d9dde4     headings       #eef1f6
+     muted text     #8b949e     chips bg       #262b33
+     chips text     #dfe3ea     chips border   #3a414d
+     links          #58a6ff     links visited  #bc8cff
+
+   All selectors are prefixed with `html` and `!important` is used only where
+   sphinx_rtd_theme applies high-specificity (`:not()` chains) or inline styles.
+   ========================================================================== */
+
+/* ---------- 0. Page & layout shells -------------------------------------- */
+html body {
+  background: #14161a !important;
+  color: #d9dde4;
+}
+html .wy-body-for-nav {
+  background: #14161a !important;
+}
+html .wy-grid-for-nav {
+  background: #14161a;
+}
+html .wy-nav-content-wrap {
+  background: #14161a !important;
+}
+html .wy-nav-content {
+  background: #14161a !important;
+}
+html .wy-nav-content-wrap .wy-nav-content {
+  background: #14161a !important;
+}
+html ::selection {
+  background: #2d4f6d;
+  color: #eef1f6;
+}
+
+/* ---------- 1. Tables ---------------------------------------------------- */
+/* RTD: .rst-content table.docutils th/td light borders + white bg — override */
+html .rst-content table.docutils,
+html .rst-content table.field-list,
+html table.docutils {
+  border: 1px solid #343b45 !important;
+  background: #1c2027 !important;
+  color: #d9dde4;
+}
+html .rst-content table.docutils th,
+html table.docutils th {
+  background: #232830 !important;
+  color: #eef1f6 !important;
+  border: 1px solid #343b45 !important;
+}
+html .rst-content table.docutils td,
+html .rst-content table.field-list td,
+html table.docutils td {
+  background: transparent !important;
+  color: #d9dde4 !important;
+  border: 1px solid #343b45 !important;
+}
+/* striping: RTD sets nth-child(2n-1) td backgrounds — beat it explicitly */
+html .rst-content table.docutils tr:nth-child(2n-1) td,
+html .rst-content table.docutils tr:nth-child(odd) td,
+html table.docutils tr:nth-child(2n-1) td {
+  background: #1c2027 !important;
+}
+html .rst-content table.docutils tr:nth-child(2n) td,
+html .rst-content table.docutils tr:nth-child(even) td,
+html table.docutils tr:nth-child(2n) td {
+  background: #171a1e !important;
+}
+html .rst-content table.longtable td,
+html table.longtable td {
+  border-color: #343b45 !important;
+}
+html .rst-content table.docutils caption,
+html table caption {
+  color: #8b949e;
+}
+/* field lists (dl.field-list) definition cells */
+html .rst-content table.field-list th,
+html .rst-content table.field-list td {
+  background: transparent !important;
+  border: none !important;
+}
+html .rst-content table.field-list th.field-name {
+  color: #8b949e !important;
+}
+
+/* ---------- 2. Inline chips: code / kbd / guilabel / file / samp --------- */
+html .rst-content code,
+html .rst-content tt,
+html .rst-content code.literal,
+html .rst-content tt.literal,
+html .rst-content code:not(.xref),
+html .rst-content tt:not(.xref),
+html code,
+html kbd,
+html samp,
+html .rst-content .guilabel,
+html .rst-content span.guilabel,
+html .guilabel,
+html .menuselection,
+html .rst-content .file,
+html span.file,
+html .rst-content .samp,
+html code.xref,
+html a code {
+  background: #262b33 !important;
+  color: #dfe3ea !important;
+  border: 1px solid #3a414d !important;
+  border-radius: 3px;
+  box-shadow: none !important;
+  font-size: 85%;
+}
+/* RTD paints literal code red-on-white via :not() chains — force the chip */
+html .rst-content code.literal:not(.xref),
+html .rst-content tt.literal:not(.xref) {
+  background: #262b33 !important;
+  color: #dfe3ea !important;
+  border: 1px solid #3a414d !important;
+}
+html kbd {
+  padding: 1px 5px !important;
+}
+/* keep links inside chips link-colored */
+html a code,
+html a .guilabel {
+  color: #58a6ff !important;
+}
+
+/* ---------- 3. Code blocks (.highlight) + Pygments tokens ---------------- */
+html .rst-content div[class^="highlight"],
+html .rst-content div[class*=" highlight"],
+html div.highlight,
+html div.highlight-default {
+  background: #171a1e !important;
+  border: 1px solid #343b45 !important;
+}
+html .rst-content div[class^="highlight"] pre,
+html div.highlight pre,
+html pre.highlight,
+html .highlight pre {
+  background: #171a1e !important;
+  color: #d9dde4 !important;
+}
+html pre {
+  color: #d9dde4;
+}
+/* literal blocks rendered directly (e.g. ```text fences) */
+html .rst-content pre.literal-block,
+html pre.literal-block {
+  background: #171a1e !important;
+  border: 1px solid #343b45 !important;
+  color: #d9dde4 !important;
+}
+/* Pygments token palette — GitHub-dark inspired, all >= 4.5:1 on #171a1e */
+html .highlight .c, html .highlight .c1, html .highlight .cm,
+html .highlight .cp, html .highlight .cpf, html .highlight .cs,
+html .highlight .ch { color: #8b949e !important; font-style: italic; }
+html .highlight .k, html .highlight .kc, html .highlight .kd,
+html .highlight .kn, html .highlight .kp, html .highlight .kr,
+html .highlight .kt, html .highlight .o, html .highlight .ow,
+html .highlight .nt { color: #ff7b72 !important; }
+html .highlight .s, html .highlight .s1, html .highlight .s2,
+html .highlight .sa, html .highlight .sb, html .highlight .sc,
+html .highlight .sd, html .highlight .se, html .highlight .sh,
+html .highlight .si, html .highlight .sx, html .highlight .sr,
+html .highlight .ss, html .highlight .dl { color: #a5d6ff !important; }
+html .highlight .m, html .highlight .mb, html .highlight .mf,
+html .highlight .mh, html .highlight .mi, html .highlight .mo,
+html .highlight .il { color: #79c0ff !important; }
+html .highlight .na, html .highlight .no,
+html .highlight .nc, html .highlight .nn { color: #ffa657 !important; }
+html .highlight .nb, html .highlight .bp { color: #ffa657 !important; }
+html .highlight .nf, html .highlight .fm, html .highlight .nd { color: #d2a8ff !important; }
+html .highlight .ne { color: #ffa198 !important; }
+html .highlight .nv, html .highlight .vc, html .highlight .vg,
+html .highlight .vi, html .highlight .vm { color: #ffa198 !important; }
+html .highlight .n, html .highlight .p, html .highlight .py,
+html .highlight .nl, html .highlight .ni, html .highlight .nx { color: #d9dde4 !important; }
+html .highlight .gh, html .highlight .gu { color: #79c0ff !important; font-weight: bold; }
+html .highlight .gd { color: #ffa198 !important; background: #490202 !important; }
+html .highlight .gi { color: #7ee787 !important; background: #04260f !important; }
+html .highlight .err { color: #ffa198 !important; background: transparent !important; border: none !important; }
+html .highlight .w { color: #d9dde4 !important; }
+/* prompt / output separation in notebooks */
+html .highlight .gp { color: #7ee787 !important; }
+/* copybutton (sphinx-copybutton renders white buttons by default) */
+html button.copybtn,
+html .copybtn {
+  background: #262b33 !important;
+  border: 1px solid #3a414d !important;
+  color: #dfe3ea !important;
+}
+html button.copybtn:hover,
+html .copybtn:hover {
+  background: #2d333d !important;
+  border-color: #4a525f !important;
+}
+html button.copybtn svg,
+html .copybtn svg {
+  color: #dfe3ea;
+  fill: #dfe3ea;
+}
+html .copybutton-tooltip,
+html .o-tooltip--left::after {
+  background: #262b33 !important;
+  color: #dfe3ea !important;
+}
+html .o-tooltip--left::before {
+  border-left-color: #262b33 !important;
+}
+
+/* ---------- 4. Sidebar --------------------------------------------------- */
+html .wy-nav-side,
+html nav.wy-nav-side {
+  background: #1f2328 !important;
+}
+html .wy-side-nav-search {
+  background: #1f2328 !important;
+}
+html .wy-side-nav-search > a,
+html .wy-side-nav-search .wy-dropdown > a {
+  color: #eef1f6 !important;
+}
+html .wy-side-nav-search > a:hover,
+html .wy-side-nav-search .wy-dropdown > a:hover {
+  background: #262b33 !important;
+  color: #eef1f6 !important;
+}
+html .wy-side-nav-search > div.version,
+html .wy-side-nav-search input[type="text"]::placeholder {
+  color: #8b949e !important;
+}
+html .wy-side-nav-search input[type="text"] {
+  background: #14161a !important;
+  border: 1px solid #343b45 !important;
+  color: #d9dde4 !important;
+  border-radius: 3px;
+}
+html .wy-side-nav-search input[type="text"]:focus {
+  border-color: #58a6ff !important;
+}
+/* nav items — base, hover, current page AND all nested descendants
+   (RTD ships `li.current a { color: #404040 }` which must be beaten for
+   every descendant level, not just the direct child) */
+html .wy-menu-vertical li a,
+html .wy-menu-vertical li.toctree-l1 a,
+html .wy-menu-vertical li.toctree-l2 a,
+html .wy-menu-vertical li.toctree-l3 a,
+html .wy-menu-vertical li.toctree-l4 a,
+html .wy-menu-vertical li.toctree-l5 a {
+  color: #d9dde4 !important;
+  background: #1f2328 !important;
+}
+html .wy-menu-vertical li a:hover,
+html .wy-menu-vertical li.toctree-l1 a:hover,
+html .wy-menu-vertical li.toctree-l2 a:hover,
+html .wy-menu-vertical li.toctree-l3 a:hover {
+  background: #262b33 !important;
+  color: #eef1f6 !important;
+}
+html .wy-menu-vertical li.current,
+html .wy-menu-vertical li.current > a,
+html .wy-menu-vertical li.toctree-l1.current > a {
+  background: #1c2027 !important;
+  color: #eef1f6 !important;
+}
+html .wy-menu-vertical li.current > a,
+html .wy-menu-vertical li.toctree-l1.current > a {
+  border-top: 1px solid #343b45 !important;
+  border-bottom: 1px solid #343b45 !important;
+  border-right: none !important;
+}
+/* THE RTD `li.current a { color:#404040 }` descendant override */
+html .wy-menu-vertical li.current a,
+html .wy-menu-vertical li.current a:hover,
+html .wy-menu-vertical li.toctree-l2.current > a,
+html .wy-menu-vertical li.toctree-l2.current.l1 > a,
+html .wy-menu-vertical li.current ul li a,
+html .wy-menu-vertical li.current ul li a:hover {
+  color: #d9dde4 !important;
+  background: #1c2027 !important;
+}
+html .wy-menu-vertical li.current ul li a:hover {
+  background: #262b33 !important;
+  color: #eef1f6 !important;
+}
+html .wy-menu-vertical li.on a:hover,
+html .wy-menu-vertical li.current > a:hover {
+  background: #262b33 !important;
+}
+html .wy-menu-vertical li code {
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+}
+/* captions, dividers, toctree headers */
+html .wy-menu-vertical p.caption,
+html .wy-menu-vertical li.header {
+  color: #8b949e !important;
+}
+html .wy-menu-vertical .caption-text {
+  color: #8b949e !important;
+}
+html hr,
+html .wy-menu-vertical hr {
+  border-color: #343b45 !important;
+}
+/* mobile top bar */
+html .wy-nav-top {
+  background: #1f2328 !important;
+  color: #d9dde4 !important;
+}
+html .wy-nav-top a {
+  color: #eef1f6 !important;
+}
+html .wy-nav-top i {
+  color: #d9dde4 !important;
+}
+html .wy-nav-top-bg { display: none; }
+/* side scrollbars */
+html .wy-nav-side,
+html .wy-menu-vertical,
+html .rst-versions {
+  scrollbar-color: #3a414d #1f2328;
+}
+html .wy-nav-side::-webkit-scrollbar,
+html .wy-menu-vertical::-webkit-scrollbar {
+  width: 10px;
+  background: #1f2328;
+}
+html .wy-nav-side::-webkit-scrollbar-thumb,
+html .wy-menu-vertical::-webkit-scrollbar-thumb {
+  background: #3a414d;
+  border-radius: 5px;
+}
+html body::-webkit-scrollbar {
+  background: #14161a;
+}
+html body::-webkit-scrollbar-thumb {
+  background: #3a414d;
+  border-radius: 5px;
+}
+
+/* ---------- 5. Content --------------------------------------------------- */
+/* headings */
+html .rst-content h1,
+html .rst-content h2,
+html .rst-content h3,
+html .rst-content h4,
+html .rst-content h5,
+html .rst-content h6,
+html h1, html h2, html h3, html h4, html h5, html h6 {
+  color: #eef1f6 !important;
+}
+html .rst-content h1 { border-bottom: 1px solid #343b45; }
+html .rst-content h2 { border-bottom: 1px solid #343b45; }
+html .rst-content .headerlink,
+html a.headerlink {
+  color: #8b949e !important;
+}
+html .rst-content .headerlink:hover,
+html a.headerlink:hover {
+  color: #58a6ff !important;
+  background: transparent !important;
+}
+/* links (+visited) */
+html .rst-content a,
+html .wy-menu a,
+html a {
+  color: #58a6ff;
+}
+html .rst-content a:visited,
+html a:visited {
+  color: #bc8cff;
+}
+html .rst-content a:hover,
+html a:hover {
+  color: #79c0ff;
+}
+/* breadcrumbs + Edit on GitHub */
+html .wy-breadcrumbs,
+html .wy-breadcrumbs li {
+  color: #8b949e !important;
+}
+html .wy-breadcrumbs a {
+  color: #58a6ff !important;
+}
+html .wy-breadcrumbs li.wy-breadcrumbs-aside a,
+html .rst-content .wy-breadcrumbs-aside a {
+  color: #8b949e !important;
+}
+html .wy-breadcrumbs li.wy-breadcrumbs-aside a:hover {
+  color: #58a6ff !important;
+}
+/* admonitions — dark bodies, colored titles kept (>=4.5:1 on each bg) */
+html .rst-content .admonition,
+html .rst-content .admonition-todo,
+html .admonition {
+  background: #1c2027 !important;
+  color: #d9dde4 !important;
+  border-radius: 4px;
+}
+html .rst-content .admonition-title,
+html .admonition-title {
+  color: #eef1f6 !important;
+  border-radius: 4px 4px 0 0;
+}
+html .rst-content .admonition-title::before,
+html .admonition-title::before {
+  color: inherit !important;
+}
+/* note (blue) */
+html .rst-content .note,
+html .rst-content .admonition.note,
+html .admonition.note { background: #1c2027 !important; }
+html .rst-content .note > .admonition-title,
+html .rst-content .admonition.note > .admonition-title,
+html .admonition.note > .admonition-title {
+  background: #1c3247 !important;
+  color: #79c0ff !important;
+}
+/* tip / hint (teal-green) */
+html .rst-content .tip,
+html .rst-content .hint,
+html .rst-content .admonition.tip,
+html .rst-content .admonition.hint,
+html .admonition.tip, html .admonition.hint { background: #1c2027 !important; }
+html .rst-content .tip > .admonition-title,
+html .rst-content .hint > .admonition-title,
+html .admonition.tip > .admonition-title,
+html .admonition.hint > .admonition-title {
+  background: #123f39 !important;
+  color: #56d4c0 !important;
+}
+/* warning / caution / attention (orange-red) */
+html .rst-content .warning,
+html .rst-content .caution,
+html .rst-content .attention,
+html .rst-content .admonition.warning,
+html .admonition.warning, html .admonition.caution,
+html .admonition.attention { background: #1c2027 !important; }
+html .rst-content .warning > .admonition-title,
+html .rst-content .caution > .admonition-title,
+html .rst-content .attention > .admonition-title,
+html .admonition.warning > .admonition-title,
+html .admonition.caution > .admonition-title,
+html .admonition.attention > .admonition-title {
+  background: #4d2129 !important;
+  color: #ffa198 !important;
+}
+/* important / danger / error (magenta-red) */
+html .rst-content .important,
+html .rst-content .danger,
+html .rst-content .error,
+html .rst-content .admonition.important,
+html .admonition.important, html .admonition.danger,
+html .admonition.error { background: #1c2027 !important; }
+html .rst-content .important > .admonition-title,
+html .rst-content .danger > .admonition-title,
+html .rst-content .error > .admonition-title,
+html .admonition.important > .admonition-title,
+html .admonition.danger > .admonition-title,
+html .admonition.error > .admonition-title {
+  background: #46233c !important;
+  color: #e292d0 !important;
+}
+/* seealso (indigo) */
+html .rst-content .seealso,
+html .rst-content .admonition.seealso,
+html .admonition.seealso { background: #1c2027 !important; }
+html .rst-content .seealso > .admonition-title,
+html .admonition.seealso > .admonition-title {
+  background: #242d4d !important;
+  color: #91a7ff !important;
+}
+/* generic fallback title */
+html .rst-content .admonition > .admonition-title {
+  background: #232830 !important;
+  color: #eef1f6 !important;
+}
+/* admonition inner code chips keep chip style */
+html .rst-content .admonition code,
+html .rst-content .admonition tt {
+  background: #262b33 !important;
+  color: #dfe3ea !important;
+  border-color: #3a414d !important;
+}
+/* blockquotes */
+html .rst-content blockquote,
+html blockquote {
+  color: #b9c0ca;
+  border-left: 3px solid #343b45;
+}
+/* epigraph/attribution */
+html .rst-content .attribution,
+html .attribution { color: #8b949e; }
+/* figure captions */
+html .rst-content .caption-text,
+html figcaption,
+html .figure .caption {
+  color: #8b949e !important;
+}
+/* images: no white letterboxing; math renders in body color */
+html .rst-content img,
+html img {
+  background: transparent !important;
+}
+html .rst-content .MathJax_SVG,
+html mjx-container {
+  color: #d9dde4 !important;
+}
+html mjx-container svg { color: #d9dde4; }
+/* footnotes & citations */
+html .rst-content dl.footnote,
+html dl.footnote,
+html .rst-content .footnote {
+  color: #b9c0ca;
+}
+html dl.footnote span.fn-backref {
+  color: #58a6ff;
+}
+/* definition lists produced by python/domain roles ({py:mod} etc.) */
+html .rst-content dl:not(.docutils) dt,
+html dl.py dt,
+html dl:not(.docutils) dt {
+  background: #1c2027 !important;
+  color: #d9dde4 !important;
+  border-top: 3px solid #343b45 !important;
+}
+html .rst-content dl:not(.docutils) dl dt,
+html dl.py dl dt {
+  background: #171a1e !important;
+  border-left: 3px solid #343b45 !important;
+  border-top: none !important;
+  color: #d9dde4 !important;
+}
+html .rst-content .viewcode-link,
+html .rst-content .viewcode-back {
+  color: #7ee787 !important;
+}
+/* prev/next buttons */
+html .rst-footer-buttons .btn,
+html a.btn.btn-neutral,
+html .btn-neutral {
+  background: #262b33 !important;
+  color: #d9dde4 !important;
+  border: 1px solid #3a414d !important;
+  box-shadow: none !important;
+}
+html a.btn.btn-neutral:hover,
+html .btn-neutral:hover {
+  background: #2d333d !important;
+  color: #eef1f6 !important;
+}
+/* footer */
+html footer,
+html .rst-footer,
+html .rst-footer-buttons + hr + footer {
+  color: #8b949e !important;
+}
+html footer a,
+html .rst-footer a {
+  color: #58a6ff !important;
+}
+html hr {
+  border-top-color: #343b45 !important;
+}
+/* search page results + on-page mark highlights */
+html #search-results .search li,
+html #search-results p.search-summary {
+  color: #d9dde4;
+}
+html #search-results .context {
+  color: #b9c0ca !important;
+}
+html mark,
+html .highlighted,
+html #search-results .highlighted {
+  background: #5c4a12 !important;
+  color: #f5d76e !important;
+  box-shadow: 0 0 0 1px #7a6318;
+}
+/* sphinx-design cards (landing page grid) */
+html .sd-card {
+  background: #1c2027 !important;
+  border: 1px solid #343b45 !important;
+  color: #d9dde4 !important;
+}
+html .sd-card-header {
+  background: #232830 !important;
+  border-bottom: 1px solid #343b45 !important;
+  color: #eef1f6 !important;
+}
+html .sd-card-title {
+  color: #eef1f6 !important;
+}
+html .sd-card-footer {
+  background: #1c2027 !important;
+  border-top: 1px solid #343b45 !important;
+  color: #8b949e !important;
+}
+html .sd-card-body p,
+html .sd-card-text {
+  color: #d9dde4 !important;
+}
+html .sd-card:hover {
+  box-shadow: 0 0 6px 1px #343b45 !important;
+  border-color: #4a525f !important;
+}
+/* contents directive (local toctrees inside chapters) */
+html .contents,
+html .topic {
+  background: #1c2027 !important;
+  border: 1px solid #343b45 !important;
+  color: #d9dde4 !important;
+}
+html .topic-title {
+  color: #eef1f6 !important;
+}
+/* versionadded / versionmodified / deprecated notes */
+html .versionmodified {
+  color: #8b949e !important;
+}
+/* RTD flyout (versions widget injected on readthedocs.org) */
+html .rst-versions,
+html .rst-versions .rst-current-version {
+  background: #171a1e !important;
+  color: #d9dde4 !important;
+  border-color: #343b45 !important;
+}
+html .rst-versions .rst-other-versions {
+  background: #1f2328 !important;
+  color: #d9dde4 !important;
+}
+html .rst-versions .rst-other-versions a {
+  color: #58a6ff !important;
+}
+html .rst-versions .rst-current-version .fa {
+  color: #d9dde4 !important;
+}

@@ -50,6 +50,7 @@ docs = [
     "docutils>=0.21,<0.22",
     "myst-parser>=4.0,<6",
     "myst-nb>=1.2,<2",
+    "sphinx-rtd-theme>=3.0,<4",
     "sphinx-design>=0.6",
     "sphinx-copybutton>=0.5",
 ]

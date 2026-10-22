@@ -43,18 +43,20 @@ templates_path = []
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "requirements.txt", "README.md"]
 
 # --- HTML output -------------------------------------------------------------
-html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "description": "ការ Fine-Tune ម៉ូដែល Qwen ពីសូន្យ — ភាសាខ្មែរ",
-    "github_user": "SeyhaLite",
-    "github_repo": "ml-foundations",
-    "github_button": True,
-    "github_type": "star",
-    "sidebar_collapse": False,
-    "page_width": "980px",
+    "navigation_depth": 3,
+    "collapse_navigation": False,
+    "sticky_navigation": True,
+    "includehidden": True,
+    "prev_next_buttons_location": "bottom",
+    # Dark-mode-only palette: the nav header blends into the dark sidebar.
+    "style_nav_header_background": "#1f2328",
 }
 html_static_path = ["_static"]
-html_css_files = ["style.css"]
+# dark-theme.css MUST load after style.css (fonts) and after the theme CSS
+# (html_css_files are injected after theme stylesheets automatically).
+html_css_files = ["style.css", "dark-theme.css"]
 html_title = "Qwen Fine-Tuning from Zero"
 html_show_sphinx = True
 

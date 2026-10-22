@@ -43,14 +43,14 @@ git push -u origin main
 ## ជំហានទី ៣ — ចុះឈ្មោះ/ចូល Read the Docs
 
 1. ទៅ [readthedocs.org](https://readthedocs.org/) → **Sign up**
-2. ជ្រើស **«Sign up with GitHub»** — ងាយបំផុត (OAuth ផ្តល់សិទ្ធិ RTD អាន repo)
+2. ជ្រើស {guilabel}`Sign up with GitHub` — ងាយបំផុត (OAuth ផ្តល់សិទ្ធិ RTD អាន repo)
 3. អនុញ្ញាតឱ្យ RTD ចូលដំណើរការគណនី GitHub របស់អ្នក
 
 ## ជំហានទី ៤ — Import repository ដែលត្រឹមត្រូវ
 
 1. Dashboard → **Import a Project**
 2. ស្វែងរក `ml-foundations` ក្នុងបញ្ជី (RTD រកឃើញដោយស្វ័យប្រវត្តិតាំ OAuth)
-3. ចុច **+** ឬ **Import**
+3. ចុច {guilabel}`+` ឬ {guilabel}`Import`
 4. បើមិនឃើញ repo → ស្វែងរកតាម URL ផ្ទាល់ ឬត្រួតពិនិត្យសិទ្ធិ GitHub App
    (Settings → Applications → Read the Docs)
 
@@ -83,7 +83,7 @@ python:
 
 ## ជំហានទី ៦ — បង្កើត (build) លើកដំបូង
 
-1. ក្នុង dashboard គម្រោង → ចុច **Build version** (version `latest`)
+1. ក្នុង dashboard គម្រោង → ចុច {guilabel}`Build version` (version `latest`)
 2. រង់ចាំ ២–៥ នាទី
 3. បើស្ថានភាព **Passed** → គេហទំព័ររស់នៅ៖
    `https://<project-slug>.readthedocs.io/`
@@ -97,7 +97,8 @@ URL មានតែពេលដែល build ដំបូង **ជោគជ័យ
 
 ពេល build បរាជ័យ៖
 
-1. Dashboard → **Builds** → ចុច build ដែលបរាជ័យ → អាន log ពី **ក្រោមឡើងលើ**
+1. Dashboard → {guilabel}`Builds` → ចុច build ដែលបរាជ័យ → អាន log ពី **ក្រោមឡើងលើ**
+   (គន្លឹះ៖ ចុច {kbd}`Ctrl+F` ដើម្បីស្វែងរកពាក្យ `error` ឬ `ERROR` ក្នុង log)
 2. កំហុសទូទៅ និងដំណោះស្រាយ៖
 
 | សារកំហុស | មូលហេតុ | ដំណោះស្រាយ |
@@ -119,11 +120,11 @@ git tag -a v1.0.0 -m "Release 1.0.0"
 git push origin v1.0.0
 ```
 
-2. RTD → **Versions** → activate version `v1.0.0`
+2. RTD → {guilabel}`Versions` → activate version `v1.0.0`
 3. ឥឡូវមានពីរកំណែ៖
    - `latest` → កូដចុងក្រោយលើ branch ដែលកំណត់
    - `v1.0.0` → snapshot នៃ tag → `https://<slug>.readthedocs.io/en/v1.0.0/`
-4. Settings → **Default version** កំណត់ថាតើអ្នកអានឃើញកំណែណាជា default
+4. {guilabel}`Settings` → {guilabel}`Default version` កំណត់ថាតើអ្នកអានឃើញកំណែណាជា default
 
 ## ជំហានទី ៩ — ធ្វើបច្ចុប្បន្នភាពគេហទំព័រក្រោយ push
 
@@ -137,8 +138,8 @@ git push
 
 → RTD ទទួល webhook → build `latest` ថ្មី → គេហទំព័រធ្វើបច្ចុប្បន្នភាពក្នុង ២–៥ នាទី។
 
-បើ webhook មិនដំណើរការ៖ RTD dashboard → Admin → Integrations → ផ្ទៀងផ្ទាត់
-GitHub webhook ឬចុច **Build version** ដោយដៃ។
+បើ webhook មិនដំណើរការ៖ RTD dashboard → {guilabel}`Admin` → {guilabel}`Integrations` → ផ្ទៀងផ្ទាត់
+GitHub webhook ឬចុច {guilabel}`Build version` ដោយដៃ។
 
 ## ជំហានទី ១០ — សាកល្បងតំណ notebook និង Google Colab
 
