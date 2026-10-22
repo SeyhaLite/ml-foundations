@@ -113,7 +113,7 @@ tokenizer.save_pretrained("outputs/qwen3.5-4b-khmer/adapter")
 `max_seq_length` → `max_length`, `dataset_text_field` មិនទៀតទេ (ប្រើ formatting func)។
 ```
 
-```{warning} chat template គឺចាំបាច់សម្រាប់ dataset `messages`
+```{warning} chat template គឺចាំបាច់សម្រាប់ dataset **messages**
 TRL ប្រើ `tokenizer.apply_chat_template()` លើ dataset សន្ទនា។ បើ tokenizer
 គ្មាន `chat_template` → `ValueError: Cannot use chat template functions...`។
 Tokenizer របស់ Qwen គ្រប់ checkpoint មាន template ភ្ជាប់ស្រាប់ — បញ្ហានេះកើតមាន

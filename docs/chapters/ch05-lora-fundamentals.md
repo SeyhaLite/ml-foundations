@@ -68,7 +68,7 @@ lora_config = LoraConfig(
 | `lora_dropout` | 0.0–0.1 | dataset តូច → ប្រើ 0.05 ដើម្បីកាត់បន្ថយ overfitting |
 | `target_modules` | `"all-linear"` | សាមញ្ញ និងល្អបំផុតសម្រាប់ Qwen។ ការកំណត់ដៃ (`q_proj`, `k_proj`, …) អាចរំលងស្រទាប់ថ្មី |
 
-```{important} ហេតុអ្វី `all-linear` សំខាន់សម្រាប់ Qwen3.5?
+```{important} ហេតុអ្វី **all-linear** សំខាន់សម្រាប់ Qwen3.5?
 Qwen3.5 ជា **hybrid architecture** — ក្រៅពី attention ធម្មតា (q/k/v/o_proj)
 វាមានស្រទាប់ Gated DeltaNet ដែលមានឈ្មោះខុសគ្នា (`in_proj_*`, `out_proj`, `conv1d` ជាដើម)
 និង MLP (`gate/up/down_proj`)។ បើអ្នកសរសេរ target_modules ដោយដៃតែ

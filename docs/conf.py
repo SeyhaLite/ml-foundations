@@ -19,6 +19,7 @@ extensions = [
     "myst_nb",          # Markdown (MyST) sources + .ipynb rendering (execution off)
     "sphinx_design",    # grid cards on the landing page
     "sphinx_copybutton",  # copy buttons on code blocks
+    "sphinx.ext.mathjax",  # renders $...$ / $...$ math (see dollarmath below)
 ]
 
 # --- MyST / notebooks -------------------------------------------------------
@@ -28,6 +29,7 @@ myst_enable_extensions = [
     "fieldlist",
     "tasklist",
     "attrs_inline",
+    "dollarmath",   # REQUIRED for $...$ and $...$ LaTeX math in chapters/notebooks
 ]
 myst_heading_anchors = 3
 

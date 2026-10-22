@@ -143,6 +143,49 @@ def test_no_gpu_or_download_in_docs_conf():
     assert "import torch" not in conf
 
 
+def test_conf_math_rendering_enabled():
+    """$...$ math silently renders as literal text unless dollarmath+mathjax are on."""
+    conf = (DOCS / "conf.py").read_text(encoding="utf-8")
+    assert '"dollarmath"' in conf, "myst_enable_extensions must include dollarmath"
+    assert "sphinx.ext.mathjax" in conf, "extensions must include sphinx.ext.mathjax"
+
+
+_FENCE_INFO_RE = re.compile(r"^\s{0,3}(```+|~~~+)\s*(\{[^}]*\}\s*.*)$")
+
+
+def _iter_markdown_texts():
+    """Yield (where, text) for every markdown source: docs pages + notebook md cells."""
+    for page in all_docs_pages():
+        yield str(page.relative_to(ROOT)), page.read_text(encoding="utf-8")
+    import json
+
+    for nb in sorted((DOCS / "notebooks").glob("*.ipynb")):
+        data = json.loads(nb.read_text(encoding="utf-8"))
+        for ci, cell in enumerate(data["cells"]):
+            if cell["cell_type"] == "markdown":
+                src = cell["source"]
+                yield (
+                    f"{nb.name}[cell {ci}]",
+                    "".join(src) if isinstance(src, list) else src,
+                )
+
+
+@pytest.mark.parametrize("where,text", list(_iter_markdown_texts()))
+def test_directive_fence_titles_have_no_backticks(where, text):
+    """CommonMark: a backtick fence's info string may NOT contain backticks.
+
+    A title like '```{note} see `code` here' silently degrades the fence into
+    a paragraph and desynchronizes every following fence in the file.
+    """
+    for i, ln in enumerate(text.splitlines(), 1):
+        m = _FENCE_INFO_RE.match(ln)
+        if m:
+            info_after_directive = m.group(2).split("}", 1)[-1]
+            assert "`" not in info_after_directive, (
+                f"{where}:{i}: backtick in directive fence title desyncs parsing: {ln.strip()!r}"
+            )
+
+
 def test_deployment_and_compatibility_pages_exist():
     assert (DOCS / "deployment.md").is_file(), "Khmer RTD deployment guide missing"
     assert (DOCS / "compatibility.md").is_file(), "model compatibility matrix missing"
