@@ -1,0 +1,41 @@
+# Qwen3-0.6B LoRA — the "learn on a potato" config.
+# Runs on a free Colab T4 (16GB) with plenty of headroom, or even CPU (slow).
+# Qwen3 generation: transformers>=4.51 works, but this repo standardizes on v5.
+model:
+  model_id: Qwen/Qwen3-0.6B
+  max_length: 1024
+  dtype: bfloat16
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules: all-linear
+
+training:
+  output_dir: outputs/qwen3-0.6b-khmer
+  dataset_path: data/sample_khmer_assistant.jsonl
+  num_epochs: 3
+  batch_size: 2
+  grad_accum_steps: 4
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.05
+  eval_split_ratio: 0.1
+  logging_steps: 5
+  save_steps: 100
+  seed: 42
+  gradient_checkpointing: true
+  packing: false
+  completion_only_loss: true
+  bf16: auto
+  report_to: none
+
+inference:
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  max_new_tokens: 512
+  # Qwen3 (2025) checkpoints default to thinking ON; disable for short answers.
+  enable_thinking: false
+  repetition_penalty: 1.0
+  presence_penalty: 0.0

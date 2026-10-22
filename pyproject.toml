@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen-ft"
+version = "1.0.0"
+description = "Qwen Fine-Tuning from Zero — ឧបករណ៍អប់រំភាសាខ្មែរសម្រាប់ fine-tune ម៉ូដែល Qwen3 / Qwen3.5 ជាមួយ LoRA"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "SeyhaLite" }]
+keywords = ["qwen", "qwen3", "qwen3.5", "fine-tuning", "lora", "peft", "trl", "khmer", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Core package stays dependency-light (only PyYAML) so that structural tests and
+# docs builds run WITHOUT torch / transformers / GPU.
+dependencies = ["pyyaml>=6.0"]
+
+[project.optional-dependencies]
+# Full training stack. Version floors verified against PyPI on 2026-10-22:
+#   transformers 5.20.2, peft 0.21.2, trl 1.16.0, accelerate 1.15.0,
+#   datasets 5.1.0, torch 2.14.1.
+# transformers>=5.2 is REQUIRED for Qwen3.5/Qwen3.6 (model_type "qwen3_5").
+# transformers>=5.8 is REQUIRED for Qwen3.8 checkpoints.
+train = [
+    "torch>=2.6",
+    "transformers>=5.8,<6",
+    "peft>=0.17",
+    "trl>=1.0",
+    "datasets>=3.0",
+    "accelerate>=1.0",
+]
+# 4-bit QLoRA (Qwen3 dense models only — NOT recommended for Qwen3.5/3.6/3.8,
+# see docs/chapters/ch09-advanced.md).
+qlora = ["bitsandbytes>=0.45"]
+dev = ["pytest>=8.0", "nbformat>=5.10"]
+docs = [
+    "sphinx>=8.1,<9",
+    "docutils>=0.21,<0.22",
+    "myst-parser>=4.0,<6",
+    "myst-nb>=1.2,<2",
+    "sphinx-design>=0.6",
+    "sphinx-copybutton>=0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/SeyhaLite/ml-foundations"
+Documentation = "https://ml-foundations.readthedocs.io/"
+Repository = "https://github.com/SeyhaLite/ml-foundations"
+
+[project.scripts]
+qwen-ft = "qwen_ft.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "heavy: requires torch/transformers to be installed (skipped automatically when absent)",
+]

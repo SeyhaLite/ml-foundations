@@ -1,0 +1,18 @@
+# Qwen Fine-Tuning from Zero — training stack
+# Floors verified against PyPI on 2026-10-22 (latest: transformers 5.20.2,
+# peft 0.21.2, trl 1.16.0, accelerate 1.15.0, datasets 5.1.0, torch 2.14.1).
+#
+#  * transformers>=5.2 is REQUIRED to load Qwen3.5/Qwen3.6 (model_type qwen3_5).
+#  * transformers>=5.8 is REQUIRED for Qwen3.8 checkpoints.
+#  * Qwen3 (2025 generation) also works on transformers>=4.51, but this course
+#    standardizes on v5.
+#
+# Install PyTorch first according to your CUDA version, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu126
+pyyaml>=6.0
+torch>=2.6
+transformers>=5.8,<6
+peft>=0.17
+trl>=1.0
+datasets>=3.0
+accelerate>=1.0

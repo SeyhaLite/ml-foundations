@@ -1,0 +1,32 @@
+/* Khmer-friendly typography for the docs site.
+   Noto Sans Khmer is loaded via @import; if the font is unavailable
+   (e.g. offline preview) the browser falls back to system Khmer fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;700&family=Noto+Serif+Khmer:wght@400;700&display=swap");
+
+body,
+div.body h1, div.body h2, div.body h3, div.body h4,
+div.body p, div.body li, div.body td, div.body th,
+.sphinxsidebar,
+.admonition,
+.rst-content,
+code, pre {
+  font-family: "Noto Sans Khmer", "Khmer OS", "Khmer OS System",
+               "Leelawadee UI", "Noto Sans", sans-serif;
+}
+
+/* Khmer script needs a taller line height to keep vowel marks readable. */
+div.body p, div.body li, .admonition p {
+  line-height: 2.0;
+}
+
+div.body h1 { line-height: 1.5; }
+div.body h2 { line-height: 1.6; margin-top: 1.6em; }
+div.body h3 { line-height: 1.6; }
+
+/* Keep long model ids from breaking the layout */
+code { word-break: break-all; }
+pre code { word-break: normal; }
+
+/* Tables in the compatibility matrix */
+table.docutils { border-collapse: collapse; }
+table.docutils td, table.docutils th { padding: 4px 8px; }

@@ -1,0 +1,16 @@
+# Documentation build dependencies (Read the Docs installs these).
+# Deliberately LIGHT: no torch / transformers / peft / trl.
+# Notebooks are rendered from source only (nb_execution_mode = "off" in conf.py),
+# so a docs build never needs a GPU and never downloads model weights.
+#
+# Combination verified locally on 2026-10-22 (clean `-W` build):
+#   sphinx 8.2.3 + docutils 0.21.2 + myst-parser 5.1.0 + myst-nb 1.4.0
+# Do NOT add "myst_parser" to conf.py extensions — myst-nb already loads it
+# (double loading crashes Sphinx).
+sphinx>=8.1,<9
+docutils>=0.21,<0.22
+myst-nb>=1.2,<2
+myst-parser>=4.0,<6
+sphinx-design>=0.6
+sphinx-copybutton>=0.5
+pyyaml>=6.0

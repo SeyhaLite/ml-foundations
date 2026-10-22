@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Sphinx output
+docs/_build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Training artifacts
+outputs/
+checkpoints/
+wandb/
+runs/
+*.safetensors
+*.bin
+*.gguf
+adapter_model*
+
+# Secrets & env
+.env
+.env.*
+*.pem
+credentials.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
