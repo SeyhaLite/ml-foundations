@@ -645,3 +645,154 @@ html .rst-versions .rst-other-versions a {
 html .rst-versions .rst-current-version .fa {
   color: #d9dde4 !important;
 }
+
+/* ---------- 6. Residual dark-on-dark text fixes -------------------------- */
+/* theme.css paints these dark (#000/#333/#404040/#555) and some selectors
+   (html.writer-html5 …, :not() chains) out-specify the generic rules above,
+   so each is neutralized explicitly with !important. */
+
+/* Container-level base color: any descendant without its own color rule
+   inherits the light body text instead of the theme's body { color:#404040 } */
+html .wy-nav-content,
+html .rst-content,
+html .rst-content .section,
+html .rst-content .toctree-wrapper {
+  color: #d9dde4 !important;
+}
+
+/* 6a. Heading back-references — every chapter heading is wrapped in
+   <a class="toc-backref"> by the {contents} directive; the theme forces
+   #404040 on it, which rendered headings BLACK on the dark page. */
+html .rst-content a.toc-backref,
+html .rst-content .toc-backref {
+  color: #eef1f6 !important;
+}
+html .rst-content a.toc-backref:hover {
+  color: #79c0ff !important;
+}
+
+/* 6b. Python domain signatures: .sig-name / .optional are painted #000 by
+   high-specificity :not() chains; children override inherited dt color. */
+html .rst-content .sig-name,
+html .rst-content .sig-prename,
+html .rst-content .optional,
+html .rst-content .sig-paren,
+html .rst-content .property,
+html .rst-content dl dt .sig-name,
+html .rst-content dl:not(.docutils) .optional {
+  color: #d9dde4 !important;
+}
+html .rst-content .sig-name {
+  color: #eef1f6 !important;
+}
+
+/* 6c. Footnotes / citations — theme uses html.writer-html5 prefix (#555) */
+html .rst-content dl.footnote,
+html .rst-content dl.citation,
+html dl.footnote,
+html dl.footnote dt,
+html dl.footnote dd,
+html .rst-content .footnote {
+  color: #b9c0ca !important;
+}
+html dl.footnote span.fn-backref,
+html .rst-content dl.footnote span.fn-backref {
+  color: #58a6ff !important;
+}
+
+/* 6d. Sidebar version/language switch selects + options (RTD injected) */
+html .wy-side-nav-search select,
+html .wy-side-nav-search > div.switch-menus select,
+html .wy-side-nav-search > div.switch-menus > div.version-switch select,
+html .wy-side-nav-search > div.switch-menus > div.language-switch select,
+html select {
+  background: #14161a !important;
+  color: #d9dde4 !important;
+  border: 1px solid #343b45 !important;
+}
+html .wy-side-nav-search select option,
+html .wy-side-nav-search > div.switch-menus > div.version-switch select option,
+html .wy-side-nav-search > div.switch-menus > div.language-switch select option,
+html select option {
+  background: #14161a !important;
+  color: #d9dde4 !important;
+}
+html .wy-side-nav-search > div.switch-menus {
+  color: #8b949e;
+}
+
+/* 6e. RTD flyout: old-version banner */
+html .rst-versions .rst-current-version.rst-active-old-version {
+  color: #ffa198 !important;
+}
+
+/* 6f. Toctree expand/collapse buttons in the sidebar */
+html .wy-menu-vertical li button.toctree-expand,
+html .wy-menu-vertical li.current > a button.toctree-expand,
+html .wy-menu-vertical li.on a button.toctree-expand {
+  color: #8b949e !important;
+}
+html .wy-menu-vertical li button.toctree-expand:hover {
+  color: #eef1f6 !important;
+}
+
+/* 6g. Form labels, checkboxes/radios, neutral utility text */
+html label,
+html .wy-checkbox,
+html .wy-radio {
+  color: #d9dde4 !important;
+}
+html .wy-text-neutral {
+  color: #b9c0ca !important;
+}
+html a.wy-text-neutral:hover {
+  color: #eef1f6 !important;
+}
+
+/* 6h. Dropdown menus (theme popups) */
+html .wy-dropdown-menu {
+  background: #1f2328 !important;
+  border: 1px solid #343b45 !important;
+}
+html .wy-dropdown-menu > dd > a {
+  color: #d9dde4 !important;
+}
+html .wy-dropdown-menu > dd > a:hover {
+  background: #262b33 !important;
+  color: #eef1f6 !important;
+}
+
+/* 6i. Legacy MathJax v2 spans (MathJax v3 handled via mjx-container above) */
+html span[id*="MathJax-Span"],
+html span[id*="MathJax"] {
+  color: #d9dde4 !important;
+}
+
+/* 6j. <ins> insertions (mark already handled in section 5) */
+html ins {
+  background: #04260f !important;
+  color: #7ee787 !important;
+}
+
+/* 6k. Neutral admonition/alert variant — light #f3f6f6 body in the theme */
+html .wy-alert.wy-alert-neutral,
+html .rst-content .wy-alert.wy-alert-neutral {
+  background: #1c2027 !important;
+  color: #d9dde4 !important;
+}
+html .wy-alert.wy-alert-neutral .wy-alert-title,
+html .wy-alert.wy-alert-neutral .rst-content .admonition-title,
+html .rst-content .wy-alert.wy-alert-neutral .admonition-title {
+  background: #232830 !important;
+  color: #eef1f6 !important;
+}
+html .wy-alert.wy-alert-neutral a {
+  color: #58a6ff !important;
+}
+
+/* 6l. Table thead text wrapper (th itself handled in section 1) */
+html .rst-content table.docutils thead,
+html .rst-content table.field-list thead,
+html .wy-table thead {
+  color: #eef1f6 !important;
+}
